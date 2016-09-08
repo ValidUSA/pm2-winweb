@@ -65,7 +65,7 @@ app.get("/operations/restart/:id", function (request, response) {
         return;
     }
     pm2.connect(function () {
-        pm2.restart(request.params.id, function (err, details) {
+        pm2.gracefulReload(request.params.id, function (err, details) {
             if (err) {
                 console.log(err);
                 response.send(err);
